@@ -76,6 +76,7 @@ func NewManageTunnelsWindow() (*ManageTunnelsWindow, error) {
 	vlayout := walk.NewVBoxLayout()
 	vlayout.SetMargins(walk.Margins{5, 5, 5, 5})
 	mtw.SetLayout(vlayout)
+	mtw.SetBackground(walk.SolidColorBrush{Color: walk.RGB(30, 30, 30)}) //playing with bg, chng text
 	mtw.Closing().Attach(func(canceled *bool, reason walk.CloseReason) {
 		// "Close to tray" instead of exiting application
 		*canceled = true
@@ -97,6 +98,8 @@ func NewManageTunnelsWindow() (*ManageTunnelsWindow, error) {
 	if mtw.tabs, err = walk.NewTabWidget(mtw); err != nil {
 		return nil, err
 	}
+
+	mtw.tabs.SetBackground(walk.SolidColorBrush{Color: walk.RGB(30, 30, 30)}) //styling add
 
 	if mtw.tunnelsPage, err = NewTunnelsPage(); err != nil {
 		return nil, err
